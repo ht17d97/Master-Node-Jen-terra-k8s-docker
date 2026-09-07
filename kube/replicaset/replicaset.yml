@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: uk-site
+  labels:
+    managedby: himanshu
+    app: education-site
+    env: Prod
+spec:
+  selector:
+    matchLabels:
+      managedby: himanshu
+      app: education-site
+      env: Prod
+  template:
+    metadata: 
+      name: uk-site
+      labels:
+        managedby: himanshu 
+        app: education
+        env: Prod
+    spec: 
+      containers: 
+        - name: nginx
+          image: nginx
+          ports:
+            - containerPort: 80
+  replicas: 3
+

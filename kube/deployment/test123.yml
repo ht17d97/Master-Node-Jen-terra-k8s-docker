@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: testing-deployment
+  labels:
+    tier: frontend
+    env: test
+    managedby: himanshu
+spec: 
+  template: 
+    metadata:
+      name: uk-app-site
+      labels:
+        tier: frontend
+        env: test
+        managedby: himanshu
+    spec: 
+      containers:
+        - name: uk-site-container
+          image: nginx:1.26
+          ports:
+            - containerPort: 80
+  selector:
+    matchLabels:
+      tier: frontend
+      env: test
+      managedby: himanshu
+  replicas: 10

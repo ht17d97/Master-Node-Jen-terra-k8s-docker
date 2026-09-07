@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: uk-site
+  labels:
+    managedby: himanshu
+    app: ps-dev
+    env: Prod
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      managedby: himanshu
+      app: ps-dev
+      env: Prod
+  template:
+    metadata:
+      name: uk-site
+      labels:
+        managedby: himanshu
+        app: ps-dev
+        env: Prod
+    spec:
+      containers:
+        - name: nginx
+          image: nginx
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: html
+              mountPath: /usr/share/nginx/html
+              readOnly: true
+      volumes:
+        - name: html
+          configMap:
+            name: nginx-html

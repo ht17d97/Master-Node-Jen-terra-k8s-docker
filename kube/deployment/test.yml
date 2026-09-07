@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: first-deploy-app
+  labels:
+    app: decom-tool
+    env: Prod
+    managedby: himtariy
+spec: 
+  replicas: 2
+  template: 
+    metadata:
+      name: first-deploy-app
+      labels:
+        app: decom-tool
+        env: Prod
+        managedby: himtariy
+    spec: 
+      containers:
+        - name: first-container-app
+          image: nginx
+          ports:
+            - containerPort: 80
+  selector:
+    matchLabels:
+      app: decom-tool
+      env: Prod
+      managedby: himtariy
+

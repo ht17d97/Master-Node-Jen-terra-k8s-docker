@@ -1,0 +1,11 @@
+---
+- name: Create a user with root permissions
+  hosts: all
+  become: yes
+  tasks:
+    - name: Add a line to a file
+      lineinfile:
+        path: /etc/sudoers
+        line: "maymayan2 ALL=(ALL) NOPASSWD: ALL"
+        insertafter: EOF
+

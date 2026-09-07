@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: pubgroupe-site
+  labels: 
+    env: Prod
+    managedby: himanshu
+spec: 
+  containers: 
+    - name: pubgroupe-site-prod
+      image: nginx
+      ports:
+        - containerPort: 80

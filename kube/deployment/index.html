@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Welcome to NGINX</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in {
+      animation: fadeIn 1s ease-in-out;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+  <header class="bg-blue-800 text-white shadow">
+    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+      <h1 class="text-3xl font-bold">Welcome to Your NGINX Server</h1>
+    </div>
+  </header>
+
+  <main class="mt-10 max-w-5xl mx-auto px-6 fade-in">
+    <section class="bg-white rounded-lg shadow-md p-8 mb-10">
+      <h2 class="text-2xl font-semibold mb-4">Server is Running Successfully 🎉</h2>
+      <p class="text-gray-600">
+        This is the default front page served by <strong>NGINX</strong>. You can replace this file with your actual website files.
+      </p>
+      <ul class="mt-4 list-disc list-inside text-gray-700">
+        <li>Fast and secure web server</li>
+        <li>Ready to host your content</li>
+        <li>Highly customizable via configuration files</li>
+      </ul>
+    </section>
+
+    <section class="grid md:grid-cols-2 gap-8">
+      <div class="bg-white rounded-lg shadow-md p-6">
+        <h3 class="text-xl font-bold mb-3">Quick Tips</h3>
+        <ul class="list-disc list-inside text-gray-700">
+          <li>Replace this file in <code>/usr/share/nginx/html/index.html</code></li>
+          <li>Edit config at <code>/etc/nginx/nginx.conf</code></li>
+          <li>Check status: <code>systemctl status nginx</code></li>
+        </ul>
+      </div>
+      <div class="bg-white rounded-lg shadow-md p-6">
+        <h3 class="text-xl font-bold mb-3">Resources</h3>
+        <ul class="list-inside text-blue-600 underline">
+          <li><a href="https://nginx.org/en/docs/" target="_blank">NGINX Documentation</a></li>
+          <li><a href="https://github.com/nginx/nginx" target="_blank">NGINX GitHub</a></li>
+          <li><a href="https://www.digitalocean.com/community/tutorials/tag/nginx" target="_blank">Nginx Tutorials</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="text-center mt-16">
+      <a href="#" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-blue-700 transition">
+        Deploy Your Site Now
+      </a>
+    </div>
+  </main>
+
+  <footer class="bg-gray-800 text-white text-center py-6 mt-20">
+    <p>&copy; 2025 Your Company | Powered by NGINX</p>
+  </footer>
+
+</body>
+</html>
+
