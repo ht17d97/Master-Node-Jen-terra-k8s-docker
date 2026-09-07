@@ -1,0 +1,32 @@
+**/.terraform/
+*.tfstate
+*.tfstate.*
+*.log
+*.tmp
+*.bak
+*.swp
+.env
+.env.*
+*.key
+*.pem
+*.p12
+*.pfx
+**/tokenforazdevops
+id_rsa
+id_ed25519
+.ssh/
+
+# Terraform generated files
+**/.terraform/
+*.tfstate
+*.tfstate.*
+
+# Credentials / secrets
+*.key
+*.pem
+*.p12
+*.pfx
+*.tfvars
+.env
+.env.*
+**/tokenforazdevops

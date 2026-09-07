@@ -1,0 +1,24 @@
+version: "3.3"
+services:
+  rabbitmq:
+   image: bitnami/rabbitmq:3.12.2-debian-11-r8
+   ports:
+    - "5672:5672"  # AMQP protocol
+    - "15672:15672"  # Management UI
+   environment:
+    RABBITMQ_DEFAULT_USER: &rabbitmq_user rabbitmq
+    RABBITMQ_DEFAULT_PASS: &rabbitmq_password rabbitmq
+    RABBITMQ_MANAGEMENT_ALLOW_WEB_ACCESS: "true"
+    RABBITMQ_USE_SSL: "no"  # Disable SSL/TLS
+    RABBITMQ_COMBINED_CERT_PATH: /bitnami/rabbitmq/certs/combined_cert.pem  # Set to a writable directory
+   healthcheck:
+    test: ["CMD", "rabbitmqctl", "status"]
+    interval: 30s
+    timeout: 30s
+    retries: 5
+   volumes:
+    - data:/bitnami/rabbitmq  # Ensure data persistence
+   networks:
+    - reportportal
+   restart: on-failure
+   command: ["/bin/bash", "/path/to/your/entrypoint.sh"]

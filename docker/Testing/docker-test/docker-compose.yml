@@ -1,0 +1,14 @@
+version: "3"
+services: 
+  web: 
+    image: ubuntu
+    networks: 
+      - kube-nw
+    volumes: 
+      - /home/sysops/kube:/opt/
+#volumes:
+#  kube: 
+
+networks:
+  kube-nw:
+    driver: bridge

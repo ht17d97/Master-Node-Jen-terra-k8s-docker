@@ -1,0 +1,16 @@
+version: '3'
+services: 
+  nurun-uk-site:
+    image: nginx
+    restart: always
+      #    networks:
+      #      - pub-dmz
+      #    volumes:
+      #      - hp
+
+      #networks: 
+      #  pub-dmz:
+      #    driver: bridge
+      #volumes: 
+      #  hp:
+  

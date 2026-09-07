@@ -1,0 +1,27 @@
+version: "3"
+services:
+  redis:
+    image: redis
+
+  db:
+    image: postgres:9.3
+
+  worker:
+    image: worker
+    links:
+      - db
+      - redis
+
+  voting-app:
+    image: voting-app
+    links:
+      - redis
+    ports:
+        - 5000:80
+
+  result-app:
+    image: result-app
+    links:
+      - db
+    ports:
+        - 5001:80

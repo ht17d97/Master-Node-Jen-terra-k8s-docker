@@ -1,0 +1,14 @@
+version: "3"
+services:
+  anil-test-site:
+    image: anil-pg-site
+    networks: 
+      - front-end
+    volumes: 
+      - "anil-data:/home/"
+   
+networks:
+  front-end:
+    driver: bridge
+volumes:
+  anil-data:

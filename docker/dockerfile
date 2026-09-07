@@ -1,0 +1,3 @@
+FROM redhat/ubi9
+RUN yum update -y && yum install net-snmp postfix -y
+COPY app.py /opt/app.py

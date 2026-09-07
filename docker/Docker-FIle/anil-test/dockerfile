@@ -1,0 +1,4 @@
+FROM nginx
+#RUN apt-get update -y && apt-get upgrade -y
+#RUN mkdir /home/anil-test
+#COPY /home/sysops/docker/app.py /home/
