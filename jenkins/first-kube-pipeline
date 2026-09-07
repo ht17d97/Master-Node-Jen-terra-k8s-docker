@@ -1,0 +1,55 @@
+pipeline {
+    agent any
+    
+    environment {
+        DOCKER_IMAGE = 'your-dockerhub-username/your-app:latest'  // Change this
+        K8S_DEPLOYMENT = 'k8s-deployment.yaml'  // Your Kubernetes deployment file
+    }
+    
+    stages {
+        stage('Checkout Code') {
+            steps {
+                git 'https://github.com/your-repo/your-app.git'  // Change this
+            }
+        }
+        
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    sh "docker build -t $DOCKER_IMAGE ."
+                }
+            }
+        }
+
+        stage('Push Docker Image') {
+            steps {
+                script {
+                    withCredentials([string(credentialsId: 'docker-hub-credentials', variable: 'DOCKER_PASSWORD')]) {
+                        sh "echo $DOCKER_PASSWORD | docker login -u your-dockerhub-username --password-stdin"
+                        sh "docker push $DOCKER_IMAGE"
+                    }
+                }
+            }
+        }
+        
+        stage('Deploy to Kubernetes') {
+            steps {
+                script {
+                    withKubeConfig([credentialsId: 'k8s-credentials']) {
+                        sh "kubectl apply -f $K8S_DEPLOYMENT"
+                        sh "kubectl rollout status deployment/your-deployment-name"
+                    }
+                }
+            }
+        }
+    }
+    
+    post {
+        success {
+            echo "Deployment successful!"
+        }
+        failure {
+            echo "Deployment failed!"
+        }
+    }
+}

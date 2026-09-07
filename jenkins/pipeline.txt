@@ -1,0 +1,36 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('git Checkout ') {
+            steps {
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: '2a65c2b6-39e6-4969-9cf3-c0193e152b33', url: 'https://github.com/ht17d97/first-terraform-repo.git']])
+            }
+        }
+        stage('terraform version ') {
+            steps {
+                sh 'terraform --version'
+            }
+        }
+        stage('terraform init ') {
+            steps {
+                sh 'terraform init'
+            }
+        }
+        stage('terraform plan ') {
+            steps {
+                withCredentials([azureServicePrincipal(credentialsId: 'AZ-Access', tenantIdVariable: 'AZURE_TENANT_ID', subscriptionIdVariable: 'AZURE_SUBSCRIPTION_ID', clientIdVariable: 'AZURE_CLIENT_ID', clientSecretVarible: 'AZURE_CLIENT_SECRET')]) {
+                    sh 'terraform plan -var="client_id=$AZURE_CLIENT_ID" -var="client_secret=$AZURE_CLIENT_SECRET" -var="subscription_id=$AZURE_SUBSCRIPTION_ID" -var="tenant_id=$AZURE_TENANT_ID"'
+                }
+            }
+        }
+        stage('terraform apply ') {
+            steps {
+                withCredentials([azureServicePrincipal(credentialsId: 'AZ-Access', tenantIdVariable: 'AZURE_TENANT_ID', subscriptionIdVariable: 'AZURE_SUBSCRIPTION_ID', clientIdVariable: 'AZURE_CLIENT_ID', clientSecretVarible: 'AZURE_CLIENT_SECRET')]) {
+                    sh 'terraform apply --auto-approve -var="client_id=$AZURE_CLIENT_ID" -var="client_secret=$AZURE_CLIENT_SECRET" -var="subscription_id=$AZURE_SUBSCRIPTION_ID" -var="tenant_id=$AZURE_TENANT_ID"'
+                }
+            }
+        }
+    }
+}
+
