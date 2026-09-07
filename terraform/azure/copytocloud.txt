@@ -1,0 +1,4 @@
+I'm new to Terraform and have so far managed to get a basic VM (plus Resource Manager trimmings) 
+up and running on Azure. The next task I have in mind is to have Terraform copy a file from my local
+machine into the newly created instance. Ideally I'm after a solution where the file will be copied 
+each time the apply command is run.

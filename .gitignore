@@ -30,3 +30,15 @@ id_ed25519
 .env
 .env.*
 **/tokenforazdevops
+
+# Files containing hardcoded credentials
+terraform/Github/resources.tf
+terraform/Github/testing/file.tf
+terraform/azure/provider.tf
+terraform/azure/multi-vm-create/provider.tf
+terraform/azure/sql-db/provider.tf
+terraform/modules/provider.tf
+terraform/gitlab/provider.tf
+
+# Terraform variable files may contain credentials
+*.tfvars
